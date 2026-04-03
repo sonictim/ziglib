@@ -24,8 +24,10 @@ pub fn debug(comptime txt: []const u8, args: anytype) void {
 
 pub fn list(comptime T: type) std.ArrayList(T) {
     return std.ArrayList(T).empty;
+    // don't forget to deinit with an allocator after returcning
 }
 
 pub fn map(comptime K: type, comptime V: type) std.AutoHashMap(K, V) {
     return std.AutoHashMap(K, V).empty;
+    // don't forget to deinit with an allocator after returcning
 }
