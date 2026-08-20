@@ -3,14 +3,15 @@ pub const std = @import("std");
 // pub const str = s.str;
 // pub const String = s.String;
 pub const json = @import("json.zig");
+pub const as = @import("cast.zig");
 pub const io = std.Io;
-pub const a = std.mem.Allocator;
+pub const alloc = std.mem.Allocator;
 pub const eql = std.mem.eql;
 // pub const text = @import("text.zig").Text;
 
 pub const str = []const u8;
 pub const cstr = [:0]const u8;
-pub const String = std.ArrayList(u8).empty;
+pub const String = std.ArrayList(u8);
 
 pub fn print(comptime txt: str) void {
     std.debug.print(txt ++ "\n", .{});
@@ -34,4 +35,8 @@ pub fn list(comptime T: type) std.ArrayList(T) {
 
 pub fn map(comptime K: type, comptime V: type) std.AutoHashMapUnmanaged(K, V) {
     return std.AutoHashMap(K, V).empty;
+}
+
+pub fn eq(s1: []const u8, s2: []const u8) bool {
+    return eql(u8, s1, s2);
 }
